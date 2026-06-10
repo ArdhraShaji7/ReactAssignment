@@ -15,9 +15,22 @@ function MonthlyRewardsTable({ rewards }) {
           </tr>
         </thead>
 
-       <tbody>
+        <tbody>
           {Object.values(rewards)
-            .sort((a, b) => b.rewardPoints - a.rewardPoints)
+            .sort((a, b) => {
+              if (a.year !== b.year) {
+                return a.year - b.year;
+              }
+
+              const monthA = new Date(`${a.month} 1, ${a.year}`).getMonth();
+              const monthB = new Date(`${b.month} 1, ${b.year}`).getMonth();
+
+              if (monthA !== monthB) {
+                return monthA - monthB;
+              }
+
+              return a.customerId - b.customerId;
+            })
             .map((reward) => (
               <tr key={`${reward.customerId}-${reward.month}-${reward.year}`}>
                 <td>{reward.customerId}</td>
