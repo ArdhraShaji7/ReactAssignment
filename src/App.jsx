@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import cusTransDetails from './TransactionData';
+import "./App.css";
 
 import {
   fetchTransactionData,
