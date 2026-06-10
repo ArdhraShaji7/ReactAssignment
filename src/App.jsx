@@ -55,18 +55,21 @@ function App() {
   const totalRewards = getTotalReward(state.transactions);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Customer Rewards Dashboard</h1>
+    <div className="container">
+       <div className="dashboard-header">
+    <h1>Customer Rewards Dashboard</h1>
+   </div>
+      <div className="card">
+        <TransactionsTable cusTransDetails={state.transactions} />
+      </div>
 
-      <TransactionsTable cusTransDetails={state.transactions} />
+      <div className="card">
+        <MonthlyRewardsTable rewards={monthlyRewards} />
+      </div>
 
-    <br />
-
-     <MonthlyRewardsTable rewards={monthlyRewards} />
-
-   <br />
-
-      <TotalRewardsTable rewards={totalRewards} />
+      <div className="card">
+        <TotalRewardsTable rewards={totalRewards} />
+      </div>
     </div>
   );
 }
