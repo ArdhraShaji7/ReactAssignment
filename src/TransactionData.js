@@ -5,7 +5,7 @@ const cusTransDetails = [
     cusId: 102,
     product: 'Bread',
     amountPaid: 301,
-    dateOfTransaction: '06-11-2025',
+    dateOfTransaction: '06-22-2025',
   },
   {
     transactionId: 1,
@@ -13,7 +13,7 @@ const cusTransDetails = [
     cusId: 101,
     product: 'Tissue Box',
     amountPaid: 22,
-    dateOfTransaction: '06-07-2025',
+    dateOfTransaction: '06-15-2025',
   },
   {
     transactionId: 4,
@@ -21,7 +21,7 @@ const cusTransDetails = [
     cusId: 104,
     product: 'Eggs',
     amountPaid: 56,
-    dateOfTransaction: '08-07-2025',
+    dateOfTransaction: '08-28-2025',
   },
   {
     transactionId: 5,
@@ -29,7 +29,7 @@ const cusTransDetails = [
     cusId: 105,
     product: 'Coffee Powder',
     amountPaid: 79,
-    dateOfTransaction: '08-08-2025',
+    dateOfTransaction: '08-17-2025',
   },
   {
     transactionId: 3,
