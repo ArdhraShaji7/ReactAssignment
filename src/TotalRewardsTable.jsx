@@ -14,13 +14,15 @@ function TotalRewardsTable({ rewards }) {
           </tr>
         </thead>
 
-        <tbody>
-          {Object.values(rewards).map((reward) => (
-            <tr key={reward.customerName}>
-              <td>{reward.customerName}</td>
-              <td>{reward.rewardPoints}</td>
-            </tr>
-          ))}
+         <tbody>
+          {Object.values(rewards)
+            .sort((a, b) => b.rewardPoints - a.rewardPoints)
+            .map((reward) => (
+              <tr key={reward.customerName}>
+                <td>{reward.customerName}</td>
+                <td>{reward.rewardPoints}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>
