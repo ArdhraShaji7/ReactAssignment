@@ -15,16 +15,18 @@ function MonthlyRewardsTable({ rewards }) {
           </tr>
         </thead>
 
-        <tbody>
-          {Object.values(rewards).map((reward) => (
-            <tr key={`${reward.customerId}-${reward.month}-${reward.year}`}>
-              <td>{reward.customerId}</td>
-              <td>{reward.customerName}</td>
-              <td>{reward.month}</td>
-              <td>{reward.year}</td>
-              <td>{reward.rewardPoints}</td>
-            </tr>
-          ))}
+       <tbody>
+          {Object.values(rewards)
+            .sort((a, b) => b.rewardPoints - a.rewardPoints)
+            .map((reward) => (
+              <tr key={`${reward.customerId}-${reward.month}-${reward.year}`}>
+                <td>{reward.customerId}</td>
+                <td>{reward.customerName}</td>
+                <td>{reward.month}</td>
+                <td>{reward.year}</td>
+                <td>{reward.rewardPoints}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>
