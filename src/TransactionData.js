@@ -21,7 +21,7 @@ const cusTransDetails = [
     cusId: 104,
     product: 'Eggs',
     amountPaid: 56,
-    dateOfTransaction: '08-28-2025',
+    dateOfTransaction: '08-04-2025',
   },
   {
     transactionId: 5,
