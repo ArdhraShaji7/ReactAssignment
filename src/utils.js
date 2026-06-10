@@ -18,16 +18,23 @@ export const rewardCalculator = (amountPaid) => {
 };
 
 export const sortTransDate = (cusTransDetails) => {
-  return [...cusTransDetails].sort(
-    (a, b) =>
-      new Date(a.dateOfTransaction) -
-      new Date(b.dateOfTransaction)
-  );
+  return [...cusTransDetails].sort((a, b) => {
+    const da = new Date(a.dateOfTransaction);
+    const db = new Date(b.dateOfTransaction);
+    return da - db;
+  });
 };
 
 export const getReward = (cusTransDetails) => {
   return cusTransDetails.reduce((acc, transaction) => {
-    const date = new Date(transaction.dateOfTransaction);
+    const [monthPart, dayPart, yearPart] =
+      transaction.dateOfTransaction.split("-");
+
+    const date = new Date(
+      yearPart,
+      Number(monthPart) - 1,
+      dayPart
+    );
 
     const month = date.toLocaleString("default", {
       month: "long",
