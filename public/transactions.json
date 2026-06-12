@@ -1,0 +1,47 @@
+[
+  {
+    "transactionId": 2,
+    "firstName": "Ruby",
+    "lastName": "Smith",
+    "customerId": 102,
+    "product": "Bread",
+    "amountPaid": 301.33,
+    "dateOfTransaction": "Apr-22-2026"
+  },
+  {
+    "transactionId": 1,
+    "firstName": "Jane",
+    "lastName": "Johnson",
+    "customerId": 101,
+    "product": "Tissue Box",
+    "amountPaid": 22.12,
+    "dateOfTransaction": "Apr-15-2026"
+  },
+  {
+    "transactionId": 4,
+    "firstName": "Rex",
+    "lastName": "Morgan",
+    "customerId": 104,
+    "product": "Eggs",
+    "amountPaid": 56.67,
+    "dateOfTransaction": "Jun-04-2026"
+  },
+  {
+    "transactionId": 5,
+    "firstName": "Harry",
+    "lastName": "Davidson",
+    "customerId": 105,
+    "product": "Coffee Powder",
+    "amountPaid": 79.88,
+    "dateOfTransaction": "Jun-17-2026"
+  },
+  {
+    "transactionId": 3,
+    "firstName": "Helen",
+    "lastName": "Mary",
+    "customerId": 103,
+    "product": "Chicken",
+    "amountPaid": 280.91,
+    "dateOfTransaction": "May-08-2026"
+  }
+]
