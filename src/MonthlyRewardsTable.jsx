@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import moment from 'moment';
 function MonthlyRewardsTable({ rewards }) {
   return (
     <>
@@ -22,8 +23,8 @@ function MonthlyRewardsTable({ rewards }) {
                 return a.year - b.year;
               }
 
-              const monthA = new Date(`${a.month} 1, ${a.year}`).getMonth();
-              const monthB = new Date(`${b.month} 1, ${b.year}`).getMonth();
+              const monthA = moment(a.month, 'MMMM').month();
+              const monthB = moment(b.month, 'MMMM').month();
 
               if (monthA !== monthB) {
                 return monthA - monthB;
