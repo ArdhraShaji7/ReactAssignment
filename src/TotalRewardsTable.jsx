@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from 'react';
 
 function TotalRewardsTable({ rewards }) {
   return (
@@ -14,7 +13,7 @@ function TotalRewardsTable({ rewards }) {
           </tr>
         </thead>
 
-         <tbody>
+        <tbody>
           {Object.values(rewards)
             .sort((a, b) => b.rewardPoints - a.rewardPoints)
             .map((reward) => (
