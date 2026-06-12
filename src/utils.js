@@ -1,7 +1,11 @@
 import moment from 'moment';
 
-export const fetchTransactionData = (cusTransDetails) => {
-  return Promise.resolve(cusTransDetails);
+export const fetchTransactionData = async () => {
+  const response = await fetch('/transactions.json');
+  if (!response.ok) {
+    throw new Error('Failed to load transactions');
+  }
+  return response.json();
 };
 
 export const rewardCalculator = (amountPaid) => {
