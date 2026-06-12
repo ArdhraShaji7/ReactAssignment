@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { rewardCalculator } from "./utils";
+import { rewardCalculator } from './utils';
 
 function TransactionsTable({ cusTransDetails }) {
   return (
@@ -23,10 +23,10 @@ function TransactionsTable({ cusTransDetails }) {
           {cusTransDetails.map((transaction) => (
             <tr key={transaction.transactionId}>
               <td>{transaction.transactionId}</td>
-              <td>{transaction.cusName}</td>
+              <td>{`${transaction.firstName} ${transaction.lastName}`}</td>
               <td>{transaction.dateOfTransaction}</td>
               <td>{transaction.product}</td>
-              <td>${transaction.amountPaid}</td>
+              <td>${transaction.amountPaid.toFixed(2)}</td>
               <td>{rewardCalculator(transaction.amountPaid)}</td>
             </tr>
           ))}

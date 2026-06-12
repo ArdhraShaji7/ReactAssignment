@@ -1,3 +1,4 @@
+import moment from 'moment';
 
 export const fetchTransactionData = (cusTransDetails) => {
   return Promise.resolve(cusTransDetails);
@@ -18,40 +19,28 @@ export const rewardCalculator = (amountPaid) => {
 };
 
 export const sortTransDate = (cusTransDetails) => {
-  return [...cusTransDetails].sort((a, b) => {
-    const da = new Date(a.dateOfTransaction);
-    const db = new Date(b.dateOfTransaction);
-    return da - db;
-  });
+  return [...cusTransDetails].sort(
+    (a, b) =>
+      moment(a.dateOfTransaction, 'MMM-DD-YYYY').valueOf() -
+      moment(b.dateOfTransaction, 'MMM-DD-YYYY').valueOf()
+  );
 };
 
 export const getReward = (cusTransDetails) => {
   return cusTransDetails.reduce((acc, transaction) => {
-    const [monthPart, dayPart, yearPart] =
-      transaction.dateOfTransaction.split("-");
+    const date = moment(transaction.dateOfTransaction, 'MMM-DD-YYYY');
 
-    const date = new Date(
-      yearPart,
-      Number(monthPart) - 1,
-      dayPart
-    );
+    const month = date.format('MMMM');
+    const year = date.format('YYYY');
 
-    const month = date.toLocaleString("default", {
-      month: "long",
-    });
+    const points = rewardCalculator(transaction.amountPaid);
 
-    const year = date.getFullYear();
-
-    const points = rewardCalculator(
-      transaction.amountPaid
-    );
-
-    const key = `${transaction.cusId}-${month}-${year}`;
+    const key = `${transaction.customerId}-${month}-${year}`;
 
     if (!acc[key]) {
       acc[key] = {
-        customerId: transaction.cusId,
-        customerName: transaction.cusName,
+        customerId: transaction.customerId,
+        customerName: `${transaction.firstName} ${transaction.lastName}`,
         month,
         year,
         rewardPoints: 0,
@@ -66,20 +55,17 @@ export const getReward = (cusTransDetails) => {
 
 export const getTotalReward = (cusTransDetails) => {
   return cusTransDetails.reduce((acc, transaction) => {
-    const points = rewardCalculator(
-      transaction.amountPaid
-    );
+    const points = rewardCalculator(transaction.amountPaid);
 
-    if (!acc[transaction.cusId]) {
-      acc[transaction.cusId] = {
-        customerName: transaction.cusName,
+    if (!acc[transaction.customerId]) {
+      acc[transaction.customerId] = {
+        customerName: `${transaction.firstName} ${transaction.lastName}`,
         rewardPoints: 0,
       };
     }
 
-    acc[transaction.cusId].rewardPoints += points;
+    acc[transaction.customerId].rewardPoints += points;
 
     return acc;
   }, {});
 };
-
