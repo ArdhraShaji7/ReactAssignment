@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import cusTransDetails from './TransactionData';
 import moment from 'moment';
 import './App.css';
 
@@ -28,8 +27,7 @@ function App() {
   useEffect(() => {
     const loadTransactions = async () => {
       try {
-        const response = await fetchTransactionData(cusTransDetails);
-
+        const response = await fetchTransactionData();
         const sortedTransactions = sortTransDate(response);
         const latestTransaction =
           sortedTransactions[sortedTransactions.length - 1];
@@ -116,13 +114,14 @@ function App() {
         <input
           type="date"
           value={startDate}
-          max={moment().format('YYYY-MM-DD')}
+          max={endDate || moment().format('YYYY-MM-DD')}
           onChange={(e) => handleStartDateChange(e.target.value)}
         />
 
         <input
           type="date"
           value={endDate}
+          min={startDate}
           max={moment().format('YYYY-MM-DD')}
           onChange={(e) => handleEndDateChange(e.target.value)}
         />

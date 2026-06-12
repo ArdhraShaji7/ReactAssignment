@@ -1,4 +1,5 @@
 import {
+  fetchTransactionData,
   rewardCalculator,
   sortTransDate,
   getReward,
@@ -132,6 +133,44 @@ describe('getTotalReward', () => {
     const rewards = getTotalReward(data);
 
     expect(rewards[101].rewardPoints).toBe(120);
+  });
+  describe('fetchTransactionData', () => {
+    beforeEach(() => {
+      global.fetch = jest.fn();
+    });
+
+    test('returns transaction data when api call succeeds', async () => {
+      const mockData = [
+        {
+          transactionId: 1,
+          customerId: 101,
+          firstName: 'Jane',
+          lastName: 'Johnson',
+          amountPaid: 120,
+          dateOfTransaction: 'Jun-15-2026',
+        },
+      ];
+
+      fetch.mockResolvedValue({
+        ok: true,
+        json: async () => mockData,
+      });
+
+      const result = await fetchTransactionData();
+
+      expect(fetch).toHaveBeenCalledWith('/transactions.json');
+      expect(result).toEqual(mockData);
+    });
+
+    test('throws error when api call fails', async () => {
+      fetch.mockResolvedValue({
+        ok: false,
+      });
+
+      await expect(fetchTransactionData()).rejects.toThrow(
+        'Failed to load transactions'
+      );
+    });
   });
 
   test('handles multiple customers', () => {
